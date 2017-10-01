@@ -1,3 +1,3 @@
 # USACO
 
-Programs I wrote for (preparation for) USACO.
+Programs I wrote (while preparing) for USACO.
