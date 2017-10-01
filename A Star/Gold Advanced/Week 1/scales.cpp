@@ -26,6 +26,30 @@ typedef vector<int> vi;
 
 int arr[50];
 int N,C;
+int high=0;
+void nextAdd(pii curP){
+    int first=curP.F;
+    int sec=curP.S;
+    int X=C-sec;
+    if(first==-1) high=max(high,sec);
+    else if(first==0){
+        int lastAdd;
+        sec+arr[0]<=C ? lastAdd=sec+arr[0]: lastAdd=sec;
+        high=max(high, lastAdd);
+    }
+    else if(arr[first]+arr[first-1] <= X){
+        nextAdd(MP(first-1, sec+arr[first]));
+    }
+    else if(arr[first]<=X){
+        nextAdd(MP(first-1,sec+arr[first]));
+        nextAdd(MP(first-2, sec+arr[first-1]));
+    }
+    else{
+        nextAdd(MP(first-1, sec));
+    }
+
+};
+
 int main()
 {
     cin>>N>>C;
@@ -34,4 +58,6 @@ int main()
         cin>>curW;
         arr[i]=curW;
     }
+    nextAdd(MP(N-1,0));
+    cout << high << endl;
 }
