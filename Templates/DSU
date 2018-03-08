@@ -27,14 +27,17 @@ template<int size> struct DSU {
 		if (p1 == p2) return;
 		if (rank[p1] == rank[p2]) {
 			parent[p1] = p2;
+			numNodes[p2] = numNodes[p1] + numNodes[p2];
 			rank[p2]++;
 		}
 		else if (rank[p1] < rank[p2]) {
 			parent[p1] = p2;
+			numNodes[p2] = numNodes[p1] + numNodes[p2];
 		}
 		else {
 			parent[p2] = p1;
+			numNodes[p1] = numNodes[p1] + numNodes[p2];
 		}
-		numNodes[p1] = numNodes[p1] + numNodes[p2];
+		
 	}
 };
