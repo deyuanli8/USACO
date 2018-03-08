@@ -38,6 +38,5 @@ template<int size> struct DSU {
 			parent[p2] = p1;
 			numNodes[p1] = numNodes[p1] + numNodes[p2];
 		}
-		
 	}
 };
