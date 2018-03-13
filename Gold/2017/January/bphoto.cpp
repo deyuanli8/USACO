@@ -30,7 +30,7 @@
 
 using namespace std;
 
-#define maxN 100001
+#define maxN 100000
 typedef long long ll;
 typedef long double ld;
 typedef vector<int> vi;
@@ -43,7 +43,7 @@ pii sorted[maxN];
 template<int size> struct BIT {
 	int tree[size + 1];
 	BIT() {
-		for (int i = 0; i<size + 1; i++) tree[i] = 0;
+		for (int i = 1; i<size + 1; i++) tree[i] = 0;
 	}
 
 	void add(int k, int x) {
@@ -85,7 +85,7 @@ int main() {
 	int counter = 0;
 	for (int i = 0; i < n; i++) {
 		pii curP = sorted[i];
-		if ((double)btree.sum(curP.S) / btree.sum(curP.S, n) > 2 || (double)btree.sum(curP.S) / btree.sum(curP.S, n) < 0.5) {
+		if ((double)btree.sum(curP.S) / btree.sum(curP.S, n-1) > 2 || (double)btree.sum(curP.S) / btree.sum(curP.S, n-1) < 0.5) {
 			counter++;
 		}
 		btree.add(curP.S, 1);
