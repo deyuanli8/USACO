@@ -6,7 +6,7 @@ template<int size> struct BIT {
   
   void add(int k, int x) {
     k++;
-    while (k <= n) {
+    while (k <= size) {
       tree[k] += x;
       k += k&-k;
     }
