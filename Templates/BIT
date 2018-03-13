@@ -1,5 +1,5 @@
 template<int size> struct BIT {
-  int arr[size+1];
+  int tree[size+1];
   BIT() {
     for(int i=0; i<size+1; i++) arr[i]=0;
   }
