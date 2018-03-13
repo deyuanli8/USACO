@@ -20,7 +20,6 @@
 #define PB push_back
 #define MP make_pair
 #define SQ(a) (a)*(a)
-//#define min(a,b) (a)<(b) ? (a) : (b)
 
 #define FOR(i, a, b) for (int i=a; i<b; i++)
 #define F0R(i, a) for (int i=0; i<a; i++)
