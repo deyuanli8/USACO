@@ -30,7 +30,7 @@
 
 using namespace std;
 
-#define maxN 20;
+#define maxN 20
 typedef long long ll;
 typedef long double ld;
 typedef vector<int> vi;
@@ -44,10 +44,27 @@ pii forPos(int firCoord, int secCoord, int direc){
     if((secCoord==0 && direc==3) || (secCoord==n-1 && direc==1) || (firCoord==0 && direc==0) || (firCoord==n-1 && direc==2)){
         return MP(firCoord, secCoord);
     }
-    if(direc==0) return MP(firCoord-1, secCoord);
-    if(direc==1) return MP(firCoord, secCoord+1);
-    if(direc==2) return MP(firCoord+1, secCoord);
-    return MP(firCoord, secCoord-1);
+    if(direc==0){
+        if(arr[firCoord-1][secCoord]){
+            return MP(firCoord-1, secCoord);
+        }
+    }
+    if(direc==1){
+        if(arr[firCoord, secCoord+1]){
+            return MP(firCoord, secCoord+1);
+        }
+    }
+    if(direc==2){
+        if(arr[firCoord+1][secCoord]){
+            return MP(firCoord+1, secCoord);
+        }
+    }
+    if(direc==3){
+        if(arr[firstCoord][secCoord-1]){
+            return MP(firCoord, secCoord-1);
+        }
+    }
+    return MP(firCoord, secCoord);
 }
 int main()
 {
