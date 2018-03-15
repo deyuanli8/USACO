@@ -19,6 +19,7 @@
 #define S second
 #define PB push_back
 #define MP make_pair
+#define MT make_tuple
 #define SQ(a) (a)*(a)
 
 #define FOR(i, a, b) for (int i=a; i<b; i++)
@@ -39,7 +40,7 @@ typedef pair<int, int> pii;
 int n;
 bool arr[maxN][maxN];
 int states[maxN][maxN][maxN][maxN][4][4]; //0=north 1=east 2=south 3=west
-queue<tuple<pii, pii, pii> que;
+queue<tuple<pii, pii, pii>> que;
 pii forPos(int firCoord, int secCoord, int direc){
     if((secCoord==0 && direc==3) || (secCoord==n-1 && direc==1) || (firCoord==0 && direc==0) || (firCoord==n-1 && direc==2)){
         return MP(firCoord, secCoord);
@@ -98,8 +99,8 @@ int main()
     }
     states[0][0][0][0][0][1]=0;
     que.push(MT(MP(n-1,0),MP(n-1,0), MP(0,1)));
-    while(!que.empty){
-        pair<pii,pii> next=que.front();
+    while(!que.empty()){
+        tuple<pii,pii,pii> next=que.front();
         que.pop();
         pii coords1=get<0>(next);
         pii coords2=get<1>(next);
@@ -115,7 +116,7 @@ int main()
         }
         pii pos1=forPos(coords1.F, coords1.S, dir.F);
         pii pos2=forPos(coords2.F, coords2.S, dir.S);
-        if(pos1.F==0 & pos2.F==0 && pos1.S=n-1 && pos2.S==n-1){
+        if(pos1.F==0 & pos2.F==0 && pos1.S==n-1 && pos2.S==n-1){
             cout << moves+1<<endl;
             break;
         }
