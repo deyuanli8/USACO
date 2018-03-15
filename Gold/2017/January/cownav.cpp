@@ -108,15 +108,15 @@ int main()
         int moves=states[coords1.F][coords1.S][coords2.F][coords2.S][dir.F][dir.S];
         if(states[coords1.F][coords1.S][coords2.F][coords2.S][(dir.F+1)%4][(dir.S+1)%4]==-1){
             states[coords1.F][coords1.S][coords2.F][coords2.S][(dir.F+1)%4][(dir.S+1)%4]=moves+1;
-            que.push(MT(coords1, coords2, MP((dir.F+1)%4, (dir.F+1)%4)));
+            que.push(MT(coords1, coords2, MP((dir.F+1)%4, (dir.S+1)%4)));
         }
         if(states[coords1.F][coords1.S][coords2.F][coords2.S][(dir.F+3)%4][(dir.S+3)%4]==-1){
             states[coords1.F][coords1.S][coords2.F][coords2.S][(dir.F+3)%4][(dir.S+3)%4]=moves+1;
-            que.push(MT(coords1, coords2, MP((dir.F+3)%4, (dir.F+3)%4)));
+            que.push(MT(coords1, coords2, MP((dir.F+3)%4, (dir.S+3)%4)));
         }
         pii pos1=forPos(coords1.F, coords1.S, dir.F);
         pii pos2=forPos(coords2.F, coords2.S, dir.S);
-        if(pos1.F==0 & pos2.F==0 && pos1.S==n-1 && pos2.S==n-1){
+        if(pos1.F==0 && pos2.F==0 && pos1.S==n-1 && pos2.S==n-1){
             cout << moves+1<<endl;
             break;
         }
