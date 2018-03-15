@@ -98,7 +98,7 @@ int main()
     }
     states[0][0][0][0][0][1]=0;
     que.push(MT(MP(n-1,0),MP(n-1,0), MP(0,1)));
-    while(!que.empty){
+    while(!que.empty()){
         pair<pii,pii> next=que.front();
         que.pop();
         pii coords1=get<0>(next);
