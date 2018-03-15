@@ -39,7 +39,7 @@ typedef pair<int, int> pii;
 int n;
 bool arr[maxN][maxN];
 int states[maxN][maxN][maxN][maxN][4][4]; //0=north 1=east 2=south 3=west
-queue<tuple<pii, pii, pii>> que;
+queue<tuple<pii, pii, pii> que;
 pii forPos(int firCoord, int secCoord, int direc){
     if((secCoord==0 && direc==3) || (secCoord==n-1 && direc==1) || (firCoord==0 && direc==0) || (firCoord==n-1 && direc==2)){
         return MP(firCoord, secCoord);
@@ -60,7 +60,7 @@ pii forPos(int firCoord, int secCoord, int direc){
         }
     }
     if(direc==3){
-        if(arr[firstCoord][secCoord-1]){
+        if(arr[firCoord][secCoord-1]){
             return MP(firCoord, secCoord-1);
         }
     }
@@ -98,7 +98,7 @@ int main()
     }
     states[0][0][0][0][0][1]=0;
     que.push(MT(MP(n-1,0),MP(n-1,0), MP(0,1)));
-    while(!que.empty()){
+    while(!que.empty){
         pair<pii,pii> next=que.front();
         que.pop();
         pii coords1=get<0>(next);
