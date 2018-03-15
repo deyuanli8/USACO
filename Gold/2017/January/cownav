@@ -51,7 +51,7 @@ pii forPos(int firCoord, int secCoord, int direc){
         }
     }
     if(direc==1){
-        if(arr[firCoord, secCoord+1]){
+        if(arr[firCoord][secCoord+1]){
             return MP(firCoord, secCoord+1);
         }
     }
