@@ -1,0 +1,31 @@
+template<int size> struct Sparse {
+	lookup[size][size]; //contains index of largest in the range [i,j]
+	int* arr;
+	Sparse(int* a) {
+		arr = a;
+		for (int i = 1; i < size; i*=2) {
+			for (int j = 0; j < size; j++) {
+				if (a == 1) {
+					lookup[j][j] = j;
+					continue;
+				}
+				if (arr[lookup[j][j + i / 2 - 1]] <= arr[lookup[j + i / 2][j + i - 1]]) {
+					lookup[j][j + i - 1] = lookup[j][j + i / 2 - 1];
+				}
+				else {
+					lookup[j][j + i - 1] = lookup[j + i / 2][j + i - 1];
+				}
+			}
+		}
+	}
+	int indexMin(int a, int b) {
+		int k = (int)pow(2, (int)log2(b - a + 1));
+		if (lookup[a][a + k - 1] <= lookup[b - k + 1][b]) {
+			return lookup[a][a + k - 1];
+		}
+		return lookup[b - k + 1][b];
+	}
+	int getMin(int a, int b) {
+		return arr[indexMin(a,b)];
+	}
+};
