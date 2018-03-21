@@ -1,5 +1,5 @@
 template<int size> struct Sparse {
-	lookup[size][size]; //contains index of largest in the range [i,j]
+	int lookup[size][size]; //contains index of largest in the range [i,j]
 	int* arr;
 	Sparse(int* a) {
 		arr = a;
