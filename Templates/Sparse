@@ -19,7 +19,10 @@ template<int size> struct Sparse {
 		}
 	}
 	int indexMin(int a, int b) {
-		int k = (int)pow(2, (int)log2(b - a + 1));
+		int k = 1;
+		for (int div = b; div > 1; div /= 2) {
+			k*=2;
+		}
 		if (lookup[a][a + k - 1] <= lookup[b - k + 1][b]) {
 			return lookup[a][a + k - 1];
 		}
