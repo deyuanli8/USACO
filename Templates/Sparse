@@ -17,7 +17,6 @@ template<int size> struct Sparse {
 				else {
 					lookup[j][j + i - 1] = lookup[j + i / 2][j + i - 1];
 				}
-				cout << "new " << j << " " << j + i - 1 << " "<<lookup[j][j + i - 1] << endl;;
 			}
 		}
 	}
