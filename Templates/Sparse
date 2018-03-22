@@ -9,24 +9,31 @@ template<int size> struct Sparse {
 					lookup[j][j] = j;
 					continue;
 				}
+				if (j + i - 1 >= size) break;
 				if (arr[lookup[j][j + i / 2 - 1]] <= arr[lookup[j + i / 2][j + i - 1]]) {
 					lookup[j][j + i - 1] = lookup[j][j + i / 2 - 1];
+					
 				}
 				else {
 					lookup[j][j + i - 1] = lookup[j + i / 2][j + i - 1];
 				}
+				cout << "new " << j << " " << j + i - 1 << " "<<lookup[j][j + i - 1] << endl;;
 			}
 		}
 	}
 	int indexMin(int a, int b) {
+		if (a == b) return a;
 		int k = 1;
-		for (int div = b; div > 1; div /= 2) {
+		for (int div = b-a+1; div > 1; div /= 2) {
 			k*=2;
 		}
-		if (lookup[a][a + k - 1] <= lookup[b - k + 1][b]) {
+		if (arr[lookup[a][a + k - 1]] <= arr[lookup[b - k + 1][b]]) {
 			return lookup[a][a + k - 1];
 		}
 		return lookup[b - k + 1][b];
+	}
+	int getNum(int a, int b) {
+		return lookup[a][b];
 	}
 	int getMin(int a, int b) {
 		return arr[indexMin(a,b)];
