@@ -12,7 +12,6 @@ template<int size> struct Sparse {
 				if (j + i - 1 >= size) break;
 				if (arr[lookup[j][j + i / 2 - 1]] <= arr[lookup[j + i / 2][j + i - 1]]) {
 					lookup[j][j + i - 1] = lookup[j][j + i / 2 - 1];
-					
 				}
 				else {
 					lookup[j][j + i - 1] = lookup[j + i / 2][j + i - 1];
