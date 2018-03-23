@@ -1,39 +1,37 @@
 template<int size> struct Sparse {
-	int lookup[size][size]; //contains index of largest in the range [i,j]
+	int lookup[size][31-__builtin_clz(size)]; //contains index of minimum in the range [i,i+2^j-1]
 	int* arr;
 	Sparse(int* a) {
 		arr = a;
-		for (int i = 1; i < size; i*=2) {
+		int power = 1;
+		for (int i = 0; i <= 31 - __builtin_clz(size); i++) {
+			power *= 2;
 			for (int j = 0; j < size; j++) {
-				if (i == 1) {
-					lookup[j][j] = j;
+				if (i == 0) {
+					lookup[j][0] = j;
 					continue;
 				}
-				if (j + i - 1 >= size) break;
-				if (arr[lookup[j][j + i / 2 - 1]] <= arr[lookup[j + i / 2][j + i - 1]]) {
-					lookup[j][j + i - 1] = lookup[j][j + i / 2 - 1];
+				if (j + power / 2 - 1 >= size) break;
+				if (arr[lookup[j][i - 1]] <= arr[lookup[j + power / 4][i - 1]]) {
+					lookup[j][i] = lookup[j][i - 1];
 				}
 				else {
-					lookup[j][j + i - 1] = lookup[j + i / 2][j + i - 1];
+					lookup[j][i] = lookup[j + power / 4][i - 1];
 				}
 			}
 		}
 	}
+
 	int indexMin(int a, int b) {
-		if (a == b) return a;
-		int k = 1;
-		for (int div = b-a+1; div > 1; div /= 2) {
-			k*=2;
+		if ((b-a)==0) return a;
+		int k = 31 - __builtin_clz(b-a+1);
+		int j = (int)(pow(2, k));
+		if (arr[lookup[a][k]] <= arr[lookup[b - j + 1][k]]) {
+			return lookup[a][k];
 		}
-		if (arr[lookup[a][a + k - 1]] <= arr[lookup[b - k + 1][b]]) {
-			return lookup[a][a + k - 1];
-		}
-		return lookup[b - k + 1][b];
-	}
-	int getNum(int a, int b) {
-		return lookup[a][b];
+		return lookup[b - j + 1][k];
 	}
 	int getMin(int a, int b) {
-		return arr[indexMin(a,b)];
+		return arr[indexMin(a, b)];
 	}
 };
