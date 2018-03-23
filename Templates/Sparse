@@ -1,5 +1,5 @@
 template<int size> struct Sparse {
-	int lookup[size][31-__builtin_clz(size)]; //contains index of minimum in the range [i,i+2^j-1]
+	int lookup[size][31 - __builtin_clz(size)]; //contains index of minimum in the range [i,i+2^j-1]
 	int* arr;
 	Sparse(int* a) {
 		arr = a;
@@ -23,8 +23,8 @@ template<int size> struct Sparse {
 	}
 
 	int indexMin(int a, int b) {
-		if ((b-a)==0) return a;
-		int k = 31 - __builtin_clz(b-a+1);
+		if ((b - a) == 0) return a;
+		int k = 31 - __builtin_clz(b - a + 1);
 		int j = (int)(pow(2, k));
 		if (arr[lookup[a][k]] <= arr[lookup[b - j + 1][k]]) {
 			return lookup[a][k];
