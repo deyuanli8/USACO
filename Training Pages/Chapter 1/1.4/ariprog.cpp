@@ -1,4 +1,3 @@
-
 /*
 ID: eed7573
 TASK: ariprog
