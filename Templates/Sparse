@@ -1,17 +1,17 @@
-template<int size> struct Sparse {
-	int lookup[size][31 - __builtin_clz(size)]; //contains index of minimum in the range [i,i+2^j-1]
+template<int sz> struct Sparse {
+	int lookup[sz][31 - __builtin_clz(sz)]; //contains index of minimum in the range [i,i+2^j-1]
 	int* arr;
 	Sparse(int* a) {
 		arr = a;
 		int power = 1;
-		for (int i = 0; i <= 31 - __builtin_clz(size); i++) {
+		for (int i = 0; i <= 31 - __builtin_clz(sz); i++) {
 			power *= 2;
-			for (int j = 0; j < size; j++) {
+			for (int j = 0; j < sz; j++) {
 				if (i == 0) {
 					lookup[j][0] = j;
 					continue;
 				}
-				if (j + power / 2 - 1 >= size) break;
+				if (j + power / 2 - 1 >= sz) break;
 				if (arr[lookup[j][i - 1]] <= arr[lookup[j + power / 4][i - 1]]) {
 					lookup[j][i] = lookup[j][i - 1];
 				}
