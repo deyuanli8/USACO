@@ -22,7 +22,7 @@ template<int sz> struct Sparse {
 		}
 	}
 
-	int indexMin(int a, int b) {
+	int indexMax(int a, int b) {
 		if ((b - a) == 0) return a;
 		int k = 31 - __builtin_clz(b - a + 1);
 		int j = (int)(pow(2, k));
@@ -31,7 +31,7 @@ template<int sz> struct Sparse {
 		}
 		return lookup[b - j + 1][k];
 	}
-	int getMin(int a, int b) {
-		return arr[indexMin(a, b)];
+	int getMax(int a, int b) {
+		return arr[indexMax(a, b)];
 	}
 };
