@@ -22,7 +22,6 @@ using namespace std;
 #define MP make_pair
 #define MT make_tuple
 #define SQ(a) (a)*(a)
-#define endl "\n"
 
 #define F0R(i, a, b) for (int i=(a); i<(b); i++)
 #define FOR(i, a) for (int i=0; i<(a); i++)
@@ -38,8 +37,8 @@ typedef vector<int> vi;
 typedef pair<int,int> pii;
 
 int main() { FAST
-    ofstream cout("");
-    ifstream cin("");
+    ofstream fout("");
+    ifstream fin("");
     
     return 0;
 }
