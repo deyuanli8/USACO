@@ -38,8 +38,9 @@ typedef vector<int> vi;
 typedef pair<int,int> pii;
 
 int main() { FAST
-    ofstream fout("");
-    ifstream fin("");
+    freopen("", "r", stdin);
+    freopen("", "w", stdout);
+
     
     return 0;
 }
