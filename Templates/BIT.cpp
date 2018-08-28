@@ -1,7 +1,7 @@
 template<int sz> struct BIT {
   int tree[sz+1];
   BIT() {
-    for(int i=0; i<sz+1; i++) tree[i]=0;
+    memset(tree, 0, sizeof(tree));
   }
   
   void add(int k, int x) {
