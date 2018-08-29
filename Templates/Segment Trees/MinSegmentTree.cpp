@@ -14,7 +14,7 @@ struct MinSegmentTree {
 			tree[ind] = min(tree[2 * ind], tree[2 * ind + 1]);
 		}
 	}
-	int sum(int a, int b) { //sums [a,b] inclusive
+	int sum(int a, int b) { //min of [a,b] inclusive
 		a += sz; b += sz;
 		int s = tree[a];
 		while (a <= b) {
