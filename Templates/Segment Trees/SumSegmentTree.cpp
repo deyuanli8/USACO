@@ -4,7 +4,7 @@ struct SumSegmentTree {
 
 	SumSegmentTree(int s) {
 		sz = 1 << (int)ceil(log2(s));
-		tree = new int[2 * sz];
+		tree = new ll[2 * sz];
 		memset(tree, 0, 2 * sz * sizeof(ll));
 	}
 	void add(int ind, ll x) {
