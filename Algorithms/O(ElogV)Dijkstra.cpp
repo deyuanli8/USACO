@@ -18,12 +18,12 @@ template<int sz> struct Dijkstra {
 		priority_queue<pair<ll, int>> q;
 		q.push({ 0,st });
 		while (!q.empty()) {
-			int a = q.top().second; q.pop();
+			int a = q.top().S; q.pop();
 			if (visited[a]) continue;
 			visited[a] = true;
-			for (auto &u : adj[a]) {
-				int b = u.first;
-				ll w = u.second;
+			for (auto &e : adj[a]) {
+				int b = e.F;
+				ll w = e.S;
 				if (dist[a] + w < dist[b]) {
 					dist[b] = dist[a] + w;
 					q.push({ -dist[b],b });
