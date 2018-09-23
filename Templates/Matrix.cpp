@@ -25,19 +25,6 @@ struct Matrix {
 		return m;
 	}
 
-	ll get(int i, int j) { //returns -1 if out of bounds
-		if (i >= 0 && i < rows && j >= 0 && j < columns) {
-			return mat[i][j];
-		}
-		return -1;
-	}
-
-	void set(int i, int j, ll k) {
-		if (i >= 0 && i < rows && j >= 0 && j < columns) {
-			mat[i][j] = k;
-		}
-	}
-
 	Matrix operator +(Matrix b) {
 		if (b.rows != rows || b.columns != columns) return Matrix();
 		Matrix m(rows, columns);
