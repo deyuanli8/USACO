@@ -6,10 +6,6 @@ struct Matrix {
 		rows = 0; columns = 0;
 	}
 
-	Matrix(int n) {
-		*this = ident(n);
-	}
-
 	Matrix(int r, int c) {
 		rows = r, columns = c;
 		mat = new ll*[r];
@@ -18,7 +14,11 @@ struct Matrix {
 			memset(mat[i], 0, c * sizeof(ll));
 		}
 	}
-
+	
+	Matrix(int n) {
+		*this = ident(n);
+	}
+	
 	Matrix ident(int n) {
 		Matrix m(n, n);
 		FOR(i, n) m.mat[i][i] = 1;
@@ -42,11 +42,13 @@ struct Matrix {
 	Matrix operator *(Matrix b) {
 		if (columns != b.rows) return Matrix(0, 0);
 		Matrix m(rows, b.columns);
-		FOR(r, rows) FOR(c, b.columns) {
-			m.mat[r][c] = 0;
-			FOR(i, columns) {
-				m.mat[r][c] += mat[r][i] * b.mat[i][c] % MOD;
-				m.mat[r][c] %= MOD;
+		FOR(r, rows) {
+			FOR(c, b.columns) {
+				m.mat[r][c] = 0;
+				FOR(i, columns) {
+					m.mat[r][c] += mat[r][i] * b.mat[i][c] % MOD;
+					m.mat[r][c] %= MOD;
+				}
 			}
 		}
 		return m;
@@ -56,15 +58,15 @@ struct Matrix {
 		if (columns != rows) return Matrix();
 		if (p == 0) return ident(rows);
 		if (p % 2 == 1) return ((*this ^ (p - 1)) * (*this));
-		Matrix sqrt = (*this ^ (p >> 1));
-		return (sqrt * sqrt);
+		Matrix sq = (*this ^ (p >> 1));
+		return (sq * sq);
 	}
 
 	void operator +=(Matrix b) {
 		*this = *this + b;
 	}
   
-  void operator *=(Matrix b) {
+  	void operator *=(Matrix b) {
 		*this = *this * b;
 	}
   
