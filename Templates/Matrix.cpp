@@ -77,5 +77,14 @@ struct Matrix {
 	void operator ^=(ll p) {
 		*this = *this ^ p;
 	}
-
+	
+	void print() {
+		FOR(i, rows) {
+		    FOR(j, columns) {
+			if(j != 0) cout << " ";
+			cout << mat[i][j];
+		    }
+		    cout << "\n";
+		}
+    	}
 };
