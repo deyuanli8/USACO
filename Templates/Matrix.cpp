@@ -25,12 +25,17 @@ struct Matrix {
 		return m;
 	}
 
-	ll get(int i, int j) {
-		return mat[i][j];
+	ll get(int i, int j) { //returns -1 if out of bounds
+		if (i >= 0 && i < rows && j >= 0 && j < columns) {
+			return mat[i][j];
+		}
+		return -1;
 	}
 
 	void set(int i, int j, ll k) {
-		mat[i][j] = k;
+		if (i >= 0 && i < rows && j >= 0 && j < columns) {
+			mat[i][j] = k;
+		}
 	}
 
 	Matrix operator +(Matrix b) {
