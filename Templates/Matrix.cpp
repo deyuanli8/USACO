@@ -14,15 +14,23 @@ struct Matrix {
 			memset(mat[i], 0, c * sizeof(ll));
 		}
 	}
-	
+
 	Matrix(int n) {
 		*this = ident(n);
 	}
-	
+
 	Matrix ident(int n) {
 		Matrix m(n, n);
 		FOR(i, n) m.mat[i][i] = 1;
 		return m;
+	}
+
+	ll get(int i, int j) {
+		return mat[i][j];
+	}
+
+	void set(int i, int j, int k) {
+		mat[i][j] = k;
 	}
 
 	Matrix operator +(Matrix b) {
@@ -65,11 +73,11 @@ struct Matrix {
 	void operator +=(Matrix b) {
 		*this = *this + b;
 	}
-  
-  	void operator *=(Matrix b) {
+
+	void operator *=(Matrix b) {
 		*this = *this * b;
 	}
-  
+
 	void operator -=(Matrix b) {
 		*this = *this - b;
 	}
@@ -77,14 +85,14 @@ struct Matrix {
 	void operator ^=(ll p) {
 		*this = *this ^ p;
 	}
-	
+
 	void print() {
 		FOR(i, rows) {
-		    FOR(j, columns) {
-			if(j != 0) cout << " ";
-			cout << mat[i][j];
-		    }
-		    cout << "\n";
+			FOR(j, columns) {
+				if (j != 0) cout << " ";
+				cout << mat[i][j];
+			}
+			cout << "\n";
 		}
-    	}
+	}
 };
