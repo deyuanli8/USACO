@@ -29,7 +29,7 @@ struct Matrix {
 		return mat[i][j];
 	}
 
-	void set(int i, int j, int k) {
+	void set(int i, int j, ll k) {
 		mat[i][j] = k;
 	}
 
