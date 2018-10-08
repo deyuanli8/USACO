@@ -7,6 +7,17 @@ struct MaxSegmentTree {
 		tree = new ll[2 * sz];
 		memset(tree, 0, 2 * sz * sizeof(ll));
 	}
+	MaxSegmentTree(int s, ll* st) {
+		sz = 1 << (int)ceil(log2(s));
+		tree = new ll[2 * sz];
+		memset(tree, 0, 2 * sz * sizeof(ll));
+		FOR(i, s) {
+			tree[i + sz] = st[i];
+		}
+		F0Rd(ind, 1, sz) {
+			tree[ind] = max(tree[2 * ind], tree[2 * ind + 1]);
+		}
+	}
 	void add(int ind, ll x) {
 		ind += sz;
 		tree[ind] += x;
@@ -14,7 +25,7 @@ struct MaxSegmentTree {
 			tree[ind] = max(tree[2 * ind], tree[2 * ind + 1]);
 		}
 	}
-	ll sum(int a, int b) { //max of [a,b] inclusive
+	ll query(int a, int b) { //max of [a,b] inclusive
 		a += sz; b += sz;
 		ll s = tree[a];
 		while (a <= b) {
