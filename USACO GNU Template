@@ -15,6 +15,7 @@ using namespace std;
 #define FORd(i,a) for (int i = (a)-1; i >= 0; i--)
 
 #define FAST ios::sync_with_stdio(0); cin.tie(0)
+#define INF 1000000000
 
 typedef long long ll;
 typedef unsigned long long ull;
