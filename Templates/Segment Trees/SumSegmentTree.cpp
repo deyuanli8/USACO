@@ -7,7 +7,18 @@ struct SumSegmentTree {
 		tree = new ll[2 * sz];
 		memset(tree, 0, 2 * sz * sizeof(ll));
 	}
-	void add(int ind, ll x) {
+	SumSegmentTree(int s, ll* st) {
+		sz = 1 << (int)ceil(log2(s));
+		tree = new ll[2 * sz];
+		memset(tree, 0, 2 * sz * sizeof(ll));
+		FOR(i, s) {
+			tree[i + sz] = st[i];
+		}
+		F0Rd(ind, 1, sz) {
+			tree[ind] = tree[2 * ind] + tree[2 * ind + 1];
+		}
+	}
+	void add(int ind, ll x) { //adds x to value at index ind
 		ind += sz;
 		tree[ind] += x;
 		for (ind /= 2; ind >= 1; ind /= 2) {
