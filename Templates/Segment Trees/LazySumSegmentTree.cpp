@@ -19,7 +19,7 @@ struct LazySumSegmentTree {
 			tree[i + sz] = st[i];
 		}
 		F0Rd(ind, 1, sz) {
-			tree[ind] = tree[2 * ind] + tree[2 * ind + 1]);
+			tree[ind] = tree[2 * ind] + tree[2 * ind + 1];
 		}
 	}
 	void propagate(int ind, int st, int e) {
@@ -50,7 +50,7 @@ struct LazySumSegmentTree {
 		if (st == l && e == r) return tree[ind];
 		propagate(ind, st, e);
 		int mid = (st + e) / 2;
-		if (l < mid && r > mid) return query(2 * ind, st, mid, l, mid) + query(2 * ind + 1, mid, e, mid, r));
+		if (l < mid && r > mid) return query(2 * ind, st, mid, l, mid) + query(2 * ind + 1, mid, e, mid, r);
 		else if (l < mid) return query(2 * ind, st, mid, l, min(mid, r));
 		else return query(2 * ind + 1, mid, e, max(mid, l), r);
 	}
