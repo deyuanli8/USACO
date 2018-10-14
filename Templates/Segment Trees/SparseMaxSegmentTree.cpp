@@ -25,7 +25,6 @@ struct node {
 		}
 		val = max((c[0] ? c[0]->val : 0), (c[1] ? c[1]->val : 0));
 	}
-
 	ll query(int ql, int qr, int l = 0, int r = SZ - 1) {
 		if (ql <= l && r <= qr) return val;
 		if (r < ql || l > qr) return 0;
