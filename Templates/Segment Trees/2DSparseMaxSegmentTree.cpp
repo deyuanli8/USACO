@@ -1,7 +1,12 @@
 struct maxnode {
 	node segment;
 	maxnode* c[2];
-
+	
+	maxnode() {
+		segment = node();
+		c[0] = NULL;
+		c[1] = NULL;
+	}
 	void update(int x, int y, ll v, int l = 0, int r = SZ - 1) {
 		if (l == x && r == x) {
 			segment.update(y, v);
