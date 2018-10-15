@@ -22,10 +22,9 @@ struct node {
 		else {
 			getc(1)->update(ind, v, mid + 1, r);
 		}
-		ll t = 0;
-		t += c[0] ? c[0]->val : 0;
-		t += c[1] ? c[1]->val : 0;
-		val = t;
+		val = 0;
+		val += c[0] ? c[0]->val : 0;
+		val += c[1] ? c[1]->val : 0;
 	}
 
 	ll query(int ql, int qr, int l = 0, int r = SZ - 1) {
@@ -47,9 +46,8 @@ struct node {
 				getc(1)->upd2d(ind, c1 ? c1->c[1] : NULL, c2 ? c2->c[1] : NULL, mid + 1, r);
 			}
 		}
-		ll t = 0;
-		t += c1 ? c1->val : 0;
-		t += c2 ? c2->val : 0;
-		val = t;
+		val = 0;
+		val += c1 ? c1->val : 0;
+		val += c2 ? c2->val : 0;
 	}
 };
