@@ -33,7 +33,7 @@ struct node {
 		if (ql <= l && r <= qr) return val;
 		if (r < ql || l > qr) return INF;
 		int mid = (l + r) / 2;
-		return min((c[0] ? c[0]->query(ql, qr, l, mid) : overlap(ql, qr, l, mid) ? 0 : INF), (c[1] ? c[1]->query(ql, qr, mid + 1, r) : overlap(ql, qr, mid + 1, r) ? 0 : INF));
+		return min((c[0] ? c[0]->query(ql, qr, l, mid) : (overlap(ql, qr, l, mid) ? 0 : INF)), (c[1] ? c[1]->query(ql, qr, mid + 1, r) : (overlap(ql, qr, mid + 1, r) ? 0 : INF)));
 	}
 	void upd2d(int ind, node* c1, node* c2, int l = 0, int r = SZ - 1) {
 		if (l != r) {
