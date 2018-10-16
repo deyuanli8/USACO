@@ -10,12 +10,12 @@ struct MaxSegmentTree2D {
 			tree[i] = MaxSegmentTree(t);
 		}
 	}
-	MaxSegmentTree2D(int s, int s2, ll** st) {
+	MaxSegmentTree2D(int s, int s2, ll* st) {
 		sz = 1 << (int)ceil(log2(s));
 		allocator<MaxSegmentTree> al;
 		tree = al.allocate(2 * sz);
 		FOR(i, s) {
-			tree[i + sz] = MaxSegmentTree(s2, st[i]);
+			tree[i + sz] = MaxSegmentTree(s2, st + i * s2);
 		}
 		F0R(i, s + sz, 2 * sz) {
 			tree[i] = MaxSegmentTree(s2);
