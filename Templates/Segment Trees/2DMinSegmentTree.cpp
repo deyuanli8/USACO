@@ -35,7 +35,7 @@ struct MinSegmentTree2D {
 			tree[ind1].add(ind2, min(tree[2 * ind1].tree[ind2 + tree[ind1].sz], tree[2 * ind1 + 1].tree[ind2 + tree[ind1].sz]) - tree[ind1].tree[tree[ind1].sz + ind2]);
 		}
 	}
-	ll query(int a, int b, int c, int d) { //max of rows [a,b], columns [c,d] inclusive
+	ll query(int a, int b, int c, int d) { //min of rows [a,b], columns [c,d] inclusive
 		a += sz; b += sz;
 		ll s = tree[a].query(c, d);
 		while (a <= b) {
