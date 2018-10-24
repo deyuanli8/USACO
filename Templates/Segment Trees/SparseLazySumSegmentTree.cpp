@@ -21,7 +21,7 @@ struct SparseLazySumSegmentTree {
 		rChild->lazy += lazy;
 		lazy = 0;
 	}
-	void update(int l, int r, ll v) {
+	void update(int l, int r, ll v) { //[l,r)
 		if (l == s && r == e) {
 			val += v * (r - l);
 			lazy += v;
@@ -42,7 +42,7 @@ struct SparseLazySumSegmentTree {
 		else val = lChild->val + rChild->val;
 	}
 
-	ll query(int l, int r) {
+	ll query(int l, int r) { //[l,r)
 		if (l == s && r == e) return val;
 		if (lazy != 0) propagate();
 		int mid = (s + e) / 2;
