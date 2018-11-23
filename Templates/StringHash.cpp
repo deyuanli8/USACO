@@ -4,7 +4,7 @@ template<int SZ> struct StringHash {
 	ll h[3][SZ];
 	const ll base[3] = { 1000696969, 972663749, 911382323 };
 	StringHash() {}
-	void build(string a) {
+	void build(string& a) {
 		FOR(i, 3) {
 			p[i][0] = 1;
 			h[i][0] = (int)a[0];
