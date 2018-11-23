@@ -1,4 +1,4 @@
-vector<int> z(string s) {
+vector<int> zstr(string s) {
   int n = s.size();
   vector<int> z(n);
   int x = 0, y = 0;
