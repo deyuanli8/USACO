@@ -8,7 +8,7 @@ template<int SZ> struct StringHash {
 		FOR(i, 3) {
 			p[i][0] = 1;
 			h[i][0] = (int)a[0];
-			F0R(j, 1, (int)a.length()) {
+			F0R(j, 1, a.length()) {
 				p[i][j] = (p[i][j - 1] * mods[i]) % base[i];
 				h[i][j] = (h[i][j - 1] * mods[i] + (int)a[j]) % base[i];
 			}
