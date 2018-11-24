@@ -1,7 +1,7 @@
 pair<pii, int> T[100005];
 int ran[100005];
 int sa[100005];
-void getSuffixArray(string s) {
+void getSuffixArray(string& s) {
 	FOR(i, s.length()) ran[i] = 0;
 	for (int len = 1; len <= s.length(); len *= 2) { // sort by first len characters
 		FOR(i, s.length()) {
