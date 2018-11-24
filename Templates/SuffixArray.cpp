@@ -39,7 +39,7 @@ void countingSort(int sz) {
 	}
 	ranker[0] = 0;
 }
-void getSuffixArray(string s) {
+void getSuffixArray(string& s) {
 	FOR(i, s.length()) ran[i] = 0;
 	for (int len = 1; len <= s.length(); len *= 2) { // sort by first len characters
 		FOR(i, s.length()) {
