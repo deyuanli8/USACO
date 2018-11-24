@@ -2,38 +2,37 @@ pair<pii, int> T[100005];
 int ran[100005];
 int sa[100005];
 
-int cnt[100005]; // cnt[i] = number of occurences of i in A
+int cnt[100005]; // cnt[i] = number of occurences of i - 1 in T
 int ranker[100005];
 pair<pii, int> tem[100005]; // temporary array
 void countingSort(int sz) {
 	FOR(i, sz) {
-		cnt[T[i].F.S]++;
+		cnt[T[i].F.S + 1]++;
 	}
-	F0R(i, 1, sz) {
+	F0R(i, 1, sz + 1) {
 		ranker[i] = ranker[i - 1] + cnt[i - 1];
 		cnt[i - 1] = 0;
 	}
 	cnt[sz - 1] = 0;
 	FOR(i, sz) {
-		tem[ranker[T[i].F.S]] = T[i];
-		ranker[T[i].F.S]++;
+		tem[ranker[T[i].F.S + 1]] = T[i];
+		ranker[T[i].F.S + 1]++;
 	}
 	FOR(i, sz) {
 		T[i] = tem[i];
 	}
 	ranker[0] = 0;
 	FOR(i, sz) {
-		cnt[T[i].F.F]++;
-		ranker[i] = 0;
+		cnt[T[i].F.F + 1]++;
 	}
-	F0R(i, 1, sz) {
+	F0R(i, 1, sz + 1) {
 		ranker[i] = ranker[i - 1] + cnt[i - 1];
 		cnt[i - 1] = 0;
 	}
 	cnt[sz - 1] = 0;
 	FOR(i, sz) {
-		tem[ranker[T[i].F.F]] = T[i];
-		ranker[T[i].F.F]++;
+		tem[ranker[T[i].F.F + 1]] = T[i];
+		ranker[T[i].F.F + 1]++;
 	}
 	FOR(i, sz) {
 		T[i] = tem[i];
@@ -52,12 +51,29 @@ void getSuffixArray(string s) {
 				T[i] = { {ran[i], b}, i };
 			}
 		}
-		countingSort(s.length());
-		FOR(i, s.length()) {
-			if (i > 0 && T[i].first == T[i - 1].first)
-				ran[T[i].second] = ran[T[i - 1].second];
-			else
-				ran[T[i].second] = i;
+		if (len == 1) {
+			sort(T, T + s.length());
+			ran[T[0].S] = 0;
+			F0R(i, 1, s.length()) {
+				if (i > 0 && T[i].F == T[i - 1].F) {
+					ran[T[i].S] = ran[T[i - 1].S];
+				}
+				else {
+					ran[T[i].S] = i;
+				}
+			}
+			FOR(i, s.length()) {
+				T[i].F.S = ran[T[i].S];
+			}
+		}
+		else {
+			countingSort(s.length());
+			FOR(i, s.length()) {
+				if (i > 0 && T[i].F == T[i - 1].F)
+					ran[T[i].S] = ran[T[i - 1].S];
+				else
+					ran[T[i].S] = i;
+			}
 		}
 	}
 	FOR(i, s.length()) {
