@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 #define F first
@@ -8,6 +7,8 @@ using namespace std;
 #define MP make_pair
 #define MT make_tuple
 #define SQ(a) (a)*(a)
+#define X real()
+#define Y imag()
 
 #define F0R(i, a, b) for (int i=(a); i<(b); i++)
 #define FOR(i, a) for (int i=0; i<(a); i++)
@@ -21,13 +22,16 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<int> vi;
-typedef pair<int,int> pii;
+typedef pair<int, int> pii;
 typedef vector<pii> vp;
+typedef complex<ll> point;
 
-int main() { 
-    FAST;
-    freopen("", "r", stdin);
-    freopen("", "w", stdout);
 
-    return 0;
+int main() {
+	FAST;
+	freopen("", "r", stdin);
+	freopen("", "w", stdout);
+
+
+	return 0;
 }
