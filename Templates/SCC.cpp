@@ -35,3 +35,4 @@ void dfs(int u) { // finds SCC
 		}
 		SCCCount++;
 	}
+}
