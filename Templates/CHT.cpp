@@ -23,5 +23,5 @@ void update(int p) { // add the pth indexed line in arr to convex hull trick
 	lines.PB(p);
 }
 int query(ld x) {
-	return lines[lower_bound(segments.begin(), segments.end(), MP(x, x)) - segments.begin()];
+	return lines[lower_bound(segments.begin(), segments.end(), MP(x, x)) - segments.begin() - 1];
 }
