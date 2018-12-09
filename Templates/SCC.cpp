@@ -1,6 +1,6 @@
 #define MAXN 100005
-vi edges[MAXN]; // initialize to -1
-int dfsNum[MAXN];
+vi edges[MAXN]; 
+int dfsNum[MAXN]; // initialize to -1
 int lowlink[MAXN];
 vi S; // stack
 bool inStack[MAXN];
