@@ -13,7 +13,7 @@ void update(int p) { // add the pth indexed line in arr to convex hull trick
 		segments.PB({ -INF, INF });
 		return;
 	}
-	while (lines.size() >= 2 && getIntersectionX(p, lines.back()) <= getIntersectionX(lines.back(), lines[lines.size() - 1])) {
+	while (lines.size() >= 2 && getIntersectionX(p, lines.back()) <= getIntersectionX(lines.back(), lines[lines.size() - 2])) {
 		lines.pop_back();
 		segments.pop_back();
 	}
