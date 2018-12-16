@@ -24,3 +24,4 @@ template<int sz> struct BIT {
     return sum(r)-sum(l-1);
   }
 };
+
