@@ -2,7 +2,7 @@
 vi edges[MAXN]; 
 int dfsNum[MAXN]; // initialize to -1
 int lowlink[MAXN];
-vi S; // stack
+vi st; // stack
 bool inStack[MAXN];
 int SCCCount = 0;
 int cnt = 0;
@@ -12,7 +12,7 @@ vi SCC[MAXN]; // list of nodes of each SCC
 
 void dfs(int u) { // finds SCC
 	lowlink[u] = dfsNum[u] = cnt++;
-	S.PB(u);
+	st.PB(u);
 	inStack[u] = true;
 	for (int v : edges[u]) {
 		bool backEdge = true;
@@ -26,8 +26,8 @@ void dfs(int u) { // finds SCC
 	}
 	if (lowlink[u] == dfsNum[u]) { // u is the base
 		while (true) {
-			int v = S.back();
-			S.pop_back();
+			int v = st.back();
+			st.pop_back();
 			inStack[v] = false;
 			SCCNum[v] = SCCCount;
 			SCC[SCCCount].PB(v);
