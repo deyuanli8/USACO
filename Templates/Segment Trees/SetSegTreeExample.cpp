@@ -51,21 +51,25 @@ typedef pair<int, int> pii;
 typedef vector<pii> vp;
 typedef complex<ll> point;
 
-/*struct LazySumSegmentTree {
+/*struct LazySetSumSegmentTree {
 	int sz;
 	ll *tree, *lazy;
-
-	LazySumSegmentTree(int s) {
+	bool *lz;
+	LazySetSumSegmentTree(int s) {
 		sz = 1 << (int)ceil(log2(s));
 		tree = new ll[2 * sz];
 		lazy = new ll[sz];
+		lz = new bool[sz];
+		memset(lz, 0, sz * sizeof(bool));
 		memset(tree, 0, 2 * sz * sizeof(ll));
 		memset(lazy, 0, sz * sizeof(ll));
 	}
-	LazySumSegmentTree(int s, ll* st) {
+	LazySetSumSegmentTree(int s, ll* st) {
 		sz = 1 << (int)ceil(log2(s));
 		tree = new ll[2 * sz];
 		lazy = new ll[sz];
+		lz = new bool[sz];
+		memset(lz, 0, sz * sizeof(bool));
 		memset(tree, 0, 2 * sz * sizeof(ll));
 		memset(lazy, 0, sz * sizeof(ll));
 		FOR(i, s) {
@@ -76,26 +80,33 @@ typedef complex<ll> point;
 		}
 	}
 	void propagate(int ind, int st, int e) {
-		if (lazy[ind] == 0) return;
+		if (lz[ind] == false) return;
 		int mid = (st + e) / 2;
 		tree[2 * ind] = (mid - st) * lazy[ind];
 		tree[2 * ind + 1] = (e - mid) * lazy[ind];
 		if (2 * ind + 1 < sz) {
 			lazy[2 * ind] = lazy[ind];
 			lazy[2 * ind + 1] = lazy[ind];
+			lz[2 * ind] = true;
+			lz[2 * ind + 1] = true;
 		}
 		lazy[ind] = 0;
+		lz[ind] = false;
 	}
 	void update(int ind, int st, int e, int l, int r, ll v) {
-		tree[ind] = (r - l) * v;
 		if (l == st && r == e) {
-			if (ind < sz) lazy[ind] = v;
+			tree[ind] = (r - l)*v;
+			if (ind < sz) {
+				lazy[ind] = v;
+				lz[ind] = true;
+			}
 			return;
 		}
 		propagate(ind, st, e);
 		int mid = (st + e) / 2;
 		if (l < mid) update(2 * ind, st, mid, l, min(r, mid), v);
 		if (r > mid) update(2 * ind + 1, mid, e, max(l, mid), r, v);
+		tree[ind] = tree[2 * ind] + tree[2 * ind + 1];
 	}
 	void update(int a, int b, ll v) { // update values in [a,b)
 		update(1, 0, sz, a, b, v);
