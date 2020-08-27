@@ -190,9 +190,9 @@ int query_up(int u, int v) { //v is ancestor of u
 			if (cur > ans) ans = cur;
 			break;
 		}
-        if (cPos[u] != 0) {
-            cur = vec[uchain].query(1, cPos[u]);
-        }
+        	if (cPos[u] != 0) {
+            		cur = vec[uchain].query(1, cPos[u]);
+        	}
 		ans = max(ans, cur);
 		u = cHead[uchain];
 		ans = max(parent[u].S, ans);
