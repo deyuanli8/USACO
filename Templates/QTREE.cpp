@@ -190,9 +190,9 @@ int query_up(int u, int v) { //v is ancestor of u
 			if (cur > ans) ans = cur;
 			break;
 		}
-        	if (cPos[u] != 0) {
-            		cur = vec[uchain].query(1, cPos[u]);
-        	}
+        if (cPos[u] != 0) {
+            cur = vec[uchain].query(1, cPos[u]);
+        }
 		ans = max(ans, cur);
 		u = cHead[uchain];
 		ans = max(parent[u].S, ans);
@@ -210,56 +210,57 @@ void change(int u, int v) {
 	vec[cInd[u]].add(cPos[u], v); //replace vs add
 }
 vp edge;
-int main() { //check dims of Sparse
+int main() {
 	FAST;
 	cin >> t;
 	FOR(j, t) {
-        cin >> n;
-        int a, b, c;
-        FOR(i, n-1) {
-            cin >> a >> b >> c;
-            adj[a-1].PB({ b-1,c });
-            adj[b-1].PB({ a-1,c });
-            edge.PB(MP(a-1, b-1));
-        }
-        FOR(i,MAXN){
-            cHead[i]=-1;
-        }
-        makeTree(0, -1, 0);
-        //dfsHLD(0);
-        Sparse<2 * MAXN> slca = Sparse<2 * MAXN>(arr);\
-        hld(0);
-        string s;
-        bool firL=true;
-        while (true) {
-            cin >> s;
-            if (s == "DONE") break;
-            cin >> a >> b;
-            a--; b--;
-            if (s != "QUERY") {
-                change((parent[edge[a].F].F == edge[a].S ? edge[a].F : edge[a].S), b+1);
-            }
-            else {
-                cout << query(a, b, slca) << "\n";
-            }
-        }
-        vec.clear();
-        edge.clear();
-	FOR(k, MAXN){
-            adj[k].clear();
-            children[k].clear();
-            parent[k]={0,0};
-            cNo=0;
-            cHead[k]=-1;
-            cInd[k]=0;
-            cPos[k]=0;
-            cSize[k]=0;
-            //sz[k]=0;
-            lci[k]=0;
-            indx=0;
+	cin >> n;
+	int a, b, c;
+	FOR(i, n-1) {
+	    cin >> a >> b >> c;
+	    adj[a-1].PB({ b-1,c });
+	    adj[b-1].PB({ a-1,c });
+	    edge.PB(MP(a-1, b-1));
 	}
-	FOR(k,2*MAXN){
-            arr[k]={0,0};
+	FOR(i,MAXN){
+	    cHead[i]=-1;
+	}
+	makeTree(0, -1, 0);
+	//dfsHLD(0);
+	Sparse<2 * MAXN> slca = Sparse<2 * MAXN>(arr);\
+	hld(0);
+	string s;
+	bool firL=true;
+	while (true) {
+	    cin >> s;
+	    if (s == "DONE") break;
+	    cin >> a >> b;
+	    a--; b--;
+	    if (s != "QUERY") {
+		change((parent[edge[a].F].F == edge[a].S ? edge[a].F : edge[a].S), b+1);
+	    }
+	    else {
+		cout << query(a, b, slca) << "\n";
+	    }
+	}
+	vec.clear();
+	edge.clear();
+	    FOR(k, MAXN){
+	    adj[k].clear();
+	    children[k].clear();
+	    parent[k]={0,0};
+	    cNo=0;
+	    cHead[k]=-1;
+	    cInd[k]=0;
+	    cPos[k]=0;
+	    cSize[k]=0;
+	    //sz[k]=0;
+	    lci[k]=0;
+	    indx=0;
+	    }
+	    FOR(k,2*MAXN){
+	    arr[k]={0,0};
+	    }
 	}
 	return 0;
 }
