@@ -245,7 +245,7 @@ int main() { //check dims of Sparse
         }
         vec.clear();
         edge.clear();
-	    FOR(k, MAXN){
+	FOR(k, MAXN){
             adj[k].clear();
             children[k].clear();
             parent[k]={0,0};
@@ -257,10 +257,9 @@ int main() { //check dims of Sparse
             //sz[k]=0;
             lci[k]=0;
             indx=0;
-	    }
-	    FOR(k,2*MAXN){
+	}
+	FOR(k,2*MAXN){
             arr[k]={0,0};
-	    }
 	}
 	return 0;
 }
